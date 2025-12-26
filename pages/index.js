@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 
 const problems = [
-  { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" }
+  { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
+  { id: 236, title: "二叉树的最近公共祖先", difficulty: "中等", slug: "236-lowest-common-ancestor-of-a-binary-tree" }
 ];
 
 const difficultyColors = {
