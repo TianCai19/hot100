@@ -1,12 +1,41 @@
-import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Mermaid = ({ children }) => {
-  const [svg, setSvg] = useState(null);
+  const containerRef = useRef(null);
+  const [hasError, setHasError] = useState(false);
 
-  if (!svg) {
-    // 这里可以集成 mermaid 渲染
-    // 为简化，这里直接返回代码块
+  useEffect(() => {
+    let cancelled = false;
+
+    const renderMermaid = async () => {
+      if (!containerRef.current) return;
+
+      try {
+        const mermaid = (await import('mermaid')).default;
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+
+        const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+        const graphDefinition = typeof children === 'string' ? children.trim() : String(children);
+
+        mermaid.render(id, graphDefinition, (svgCode) => {
+          if (cancelled || !containerRef.current) return;
+          containerRef.current.innerHTML = svgCode;
+        }, containerRef.current);
+      } catch (error) {
+        if (!cancelled) {
+          setHasError(true);
+        }
+      }
+    };
+
+    renderMermaid();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [children]);
+
+  if (hasError) {
     return (
       <pre className="mermaid bg-gray-800 p-4 rounded-lg overflow-x-auto">
         <code>{children}</code>
@@ -14,7 +43,7 @@ const Mermaid = ({ children }) => {
     );
   }
 
-  return <div dangerouslySetInnerHTML={{ __html: svg }} />;
+  return <div ref={containerRef} className="mermaid my-4" />;
 };
 
 const CodeBlock = ({ className, children }) => {
