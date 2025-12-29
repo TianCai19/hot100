@@ -230,16 +230,16 @@ public:
 
 <Mermaid>
 graph TB
-    subgraph 第一步: 找中点
-        SLOW["慢指针: 1→2"]
-        FAST["快指针: 1→2→2→1"]
+    subgraph "Step 1: Find Middle"
+        SLOW["Slow pointer: 1→2"]
+        FAST["Fast pointer: 1→2→2→1"]
     end
-    subgraph 第二步: 反转后半部分
-        ORIG["原: 1→2→2→1"]
-        REV["后: 1→2→1→2"]
+    subgraph "Step 2: Reverse Second Half"
+        ORIG["Original: 1→2→2→1"]
+        REV["Reversed: 1→2→1→2"]
     end
-    subgraph 第三步: 比较
-        COMP["1==1 ✓<br/>2==2 ✓"]
+    subgraph "Step 3: Compare"
+        COMP["1==1 ✓ 2==2 ✓"]
     end
 </Mermaid>
 

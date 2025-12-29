@@ -97,16 +97,11 @@ public:
 
 使用**单调递减栈**，栈中存储温度的索引。
 
-<Mermaid>
-graph TB
-    subgraph 单调栈处理流程
-        A["遍历温度数组"] --> B{"栈不为空且<br/>当前温度 > 栈顶温度"}
-        B -->|是| C["弹出栈顶索引<br/>计算天数差"]
-        C --> B
-        B -->|否| D["当前索引入栈"]
-        D --> E["继续下一个"]
-    end
-</Mermaid>
+**流程：**
+1. 遍历温度数组
+2. 当栈不为空且当前温度 > 栈顶温度时，弹出栈顶并计算天数差
+3. 当前索引入栈
+4. 继续下一个
 
 **核心思想：**
 - 维护一个单调递减栈（存索引）
@@ -117,15 +112,15 @@ graph TB
 
 <Mermaid>
 graph TB
-    subgraph 处理过程
-        A1["i=0, temp=73<br/>栈: [0]"]
-        A2["i=1, temp=74 > 73<br/>弹出0, answer[0]=1<br/>栈: [1]"]
-        A3["i=2, temp=75 > 74<br/>弹出1, answer[1]=1<br/>栈: [2]"]
-        A4["i=3, temp=71 < 75<br/>栈: [2,3]"]
-        A5["i=4, temp=69 < 71<br/>栈: [2,3,4]"]
-        A6["i=5, temp=72 > 69<br/>弹出4, answer[4]=1<br/>72 > 71, 弹出3, answer[3]=2<br/>栈: [2,5]"]
-        A7["i=6, temp=76 > 72<br/>弹出5, answer[5]=1<br/>76 > 75, 弹出2, answer[2]=4<br/>栈: [6]"]
-        A8["i=7, temp=73 < 76<br/>栈: [6,7]"]
+    subgraph "Processing Steps"
+        A1["i=0, temp=73 stack: [0]"]
+        A2["i=1, temp=74 > 73 pop0, answer[0]=1 stack: [1]"]
+        A3["i=2, temp=75 > 74 pop1, answer[1]=1 stack: [2]"]
+        A4["i=3, temp=71 < 75 stack: [2,3]"]
+        A5["i=4, temp=69 < 71 stack: [2,3,4]"]
+        A6["i=5, temp=72 > 69 pop4, answer[4]=1 72 > 71, pop3, answer[3]=2 stack: [2,5]"]
+        A7["i=6, temp=76 > 72 pop5, answer[5]=1 76 > 75, pop2, answer[2]=4 stack: [6]"]
+        A8["i=7, temp=73 < 76 stack: [6,7]"]
     end
 </Mermaid>
 

@@ -142,13 +142,13 @@ public:
 
 <Mermaid>
 graph TB
-    subgraph 第一轮
+    subgraph "First Round"
         PA1[pA: a1→a2→c1→c2→c3→null]
         PB1[pB: b1→b2→b3→c1→c2→c3→null]
     end
-    subgraph 第二轮
-        PA2[pA: b1→b2→b3→c1相遇]
-        PB2[pB: a1→a2→c1相遇]
+    subgraph "Second Round"
+        PA2[pA: b1→b2→b3→c1 meet]
+        PB2[pB: a1→a2→c1 meet]
     end
 </Mermaid>
 

@@ -64,9 +64,9 @@ description: "给你一棵二叉树的根节点 root，翻转这棵二叉树，�
 
 <Mermaid>
 graph TB
-    A["递归翻转 root"] --> B["翻转左子树"]
-    A --> C["翻转右子树"]
-    A --> D["交换左右子节点"]
+    A["Recursive invert root"] --> B["Invert left subtree"]
+    A --> C["Invert right subtree"]
+    A --> D["Swap left and right children"]
     B --> E["return invert(left)"]
     C --> F["return invert(right)"]
     D --> G["root.left, root.right = root.right, root.left"]
