@@ -3,6 +3,11 @@ import Layout from '../components/Layout';
 
 const problems = [
   { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
+  { id: 200, title: "岛屿数量", difficulty: "中等", slug: "200-number-of-islands" },
+  { id: 206, title: "反转链表", difficulty: "简单", slug: "206-reverse-linked-list" },
+  { id: 207, title: "课程表", difficulty: "中等", slug: "207-course-schedule" },
+  { id: 208, title: "实现 Trie（前缀树）", difficulty: "中等", slug: "208-implement-trie" },
+  { id: 215, title: "数组中的第 K 个最大元素", difficulty: "中等", slug: "215-kth-largest-element" },
   { id: 221, title: "最大正方形", difficulty: "中等", slug: "221-maximal-square" },
   { id: 226, title: "翻转二叉树", difficulty: "简单", slug: "226-invert-binary-tree" },
   { id: 234, title: "回文链表", difficulty: "简单", slug: "234-palindrome-linked-list" },
