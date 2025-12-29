@@ -1,4 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { Children, useEffect, useRef, useState } from 'react';
+
+const normalizeMermaidContent = (content) => {
+  if (typeof content === 'string') {
+    return content.trim();
+  }
+
+  const parts = [];
+  Children.toArray(content).forEach((child) => {
+    if (typeof child === 'string') {
+      parts.push(child);
+    }
+  });
+
+  return parts.join('\n').trim();
+};
 
 const Mermaid = ({ children }) => {
   const containerRef = useRef(null);
@@ -15,7 +30,12 @@ const Mermaid = ({ children }) => {
         mermaid.initialize({ startOnLoad: false, theme: 'dark' });
 
         const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
-        const graphDefinition = typeof children === 'string' ? children.trim() : String(children);
+        const graphDefinition = normalizeMermaidContent(children);
+
+        if (!graphDefinition) {
+          setHasError(true);
+          return;
+        }
 
         mermaid.render(id, graphDefinition, (svgCode) => {
           if (cancelled || !containerRef.current) return;
