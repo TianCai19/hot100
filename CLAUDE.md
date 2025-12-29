@@ -137,6 +137,28 @@ Or manually:
    npm run build
    ```
 
+5. **🔍 Verify New Problems (IMPORTANT):**
+   After adding a new problem, use **Chrome DevTools MCP** to verify:
+   ```bash
+   # Navigate to the new problem page
+   navigate_page -> http://localhost:3000/problems/{slug}
+
+   # Check for console errors
+   list_console_messages
+
+   # Verify Mermaid diagrams render correctly
+   # Check SVG components display properly
+   # Ensure syntax highlighting works
+   ```
+
+   **⚠️ Common Issues to Check:**
+   - Mermaid reserved keywords: `not`, `has`, `and`, `or` → use alternatives
+   - HTML tags like `<br/>` → replace with spaces or line breaks
+   - Chinese characters in Mermaid → use English for diagram labels
+   - SVG rendering errors → verify component registration
+
+   **Reference:** https://github.com/ChromeDevTools/chrome-devtools-mcp
+
 ## Key Dependencies
 
 - **next@16** - React framework with SSG
