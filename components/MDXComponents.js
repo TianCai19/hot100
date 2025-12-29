@@ -1,48 +1,59 @@
 import { Children, useEffect, useRef, useState } from 'react';
 
-const normalizeMermaidContent = (content) => {
-  if (typeof content === 'string') {
-    return content.trim();
+const collectText = (node) => {
+  if (typeof node === 'string') {
+    return node;
   }
 
-  const parts = [];
-  Children.toArray(content).forEach((child) => {
-    if (typeof child === 'string') {
-      parts.push(child);
-    }
-  });
+  if (Array.isArray(node)) {
+    return node.map(collectText).join('');
+  }
 
-  return parts.join('\n').trim();
+  if (node && node.props && node.props.children) {
+    return collectText(node.props.children);
+  }
+
+  return '';
 };
+
+const normalizeMermaidContent = (content) => collectText(Children.toArray(content)).trim();
 
 const Mermaid = ({ children }) => {
   const containerRef = useRef(null);
+  const [svg, setSvg] = useState(null);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
     const renderMermaid = async () => {
-      if (!containerRef.current) return;
+      setHasError(false);
+      setSvg(null);
 
       try {
         const mermaid = (await import('mermaid')).default;
-        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'dark',
+          securityLevel: 'loose',
+        });
 
         const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
         const graphDefinition = normalizeMermaidContent(children);
 
         if (!graphDefinition) {
+          console.warn('Mermaid: empty graph definition', children);
           setHasError(true);
           return;
         }
 
-        mermaid.render(id, graphDefinition, (svgCode) => {
-          if (cancelled || !containerRef.current) return;
-          containerRef.current.innerHTML = svgCode;
-        }, containerRef.current);
+        const { svg } = await mermaid.render(id, graphDefinition);
+        if (!cancelled) {
+          setSvg(svg);
+        }
       } catch (error) {
         if (!cancelled) {
+          console.error('Mermaid render error:', error);
           setHasError(true);
         }
       }
@@ -63,7 +74,11 @@ const Mermaid = ({ children }) => {
     );
   }
 
-  return <div ref={containerRef} className="mermaid my-4" />;
+  if (svg) {
+    return <div className="mermaid my-4 flex justify-center" dangerouslySetInnerHTML={{ __html: svg }} />;
+  }
+
+  return <div className="mermaid my-4 text-gray-400">加载图表中...</div>;
 };
 
 const CodeBlock = ({ className, children }) => {
