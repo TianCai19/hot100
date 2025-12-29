@@ -47,3 +47,8 @@
   />
   ```
   - `row/col` 从 0 开始；`size` 为边长；删除 `candidate` 可去掉红框。无需手动绘图或导入 PNG/SVG 资源。
+
+## Visual Debug Notes
+- 在 MDX 中使用 `<Mermaid>` 时若语法不合法会出现“Mermaid render error: JSHandle@error”，应检查 Mermaid 语法或改用静态 SVG。
+- 如果 MDX 页面报 `[next-mdx-remote] error compiling MDX: Could not parse expression with acorn`，常见原因是内联 SVG/JSX 使用了不被 MDX 接受的属性（如 `class`），需改成 `className` 或移除动态表达式，保持静态标签。
+- 进行可视化时优先用已有组件（如 `<MaxSquareViz>`），或用纯静态 SVG，避免动态脚本/模板插值。
