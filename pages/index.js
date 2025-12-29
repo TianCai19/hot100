@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 
 const problems = [
+  { id: 1, title: "两数之和", difficulty: "简单", slug: "1-two-sum" },
+  { id: 2, title: "两数相加", difficulty: "中等", slug: "2-add-two-numbers" },
+  { id: 3, title: "无重复字符的最长子串", difficulty: "中等", slug: "3-longest-substring-without-repeating-characters" },
+  { id: 5, title: "最长回文子串", difficulty: "中等", slug: "5-longest-palindromic-substring" },
+  { id: 11, title: "盛最多水的容器", difficulty: "中等", slug: "11-container-with-most-water" },
   { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
   { id: 200, title: "岛屿数量", difficulty: "中等", slug: "200-number-of-islands" },
   { id: 206, title: "反转链表", difficulty: "简单", slug: "206-reverse-linked-list" },
