@@ -101,6 +101,11 @@ Or manually:
    - Use `<DifficultyBadge>` for difficulty display
    - Use `<Mermaid>` for diagrams
    - Include both Python and C++ code blocks with syntax highlighting
+   - **IMPORTANT:** Provide **multiple solutions** when applicable:
+     - At least 2 different approaches (e.g., brute force + optimal)
+     - Common pattern: 暴力解 → 哈希表/双指针 → 动态规划/贪心
+     - Label clearly (e.g., "解法一：哈希集合", "解法二：双指针（推荐）")
+     - Include complexity comparison table when solutions differ significantly
 
 2. **Create code files:**
    - `{id}_{problem-name}.py` - Python implementation with tests
