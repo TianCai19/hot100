@@ -3,8 +3,11 @@ import Layout from '../components/Layout';
 
 const problems = [
   { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
+  { id: 221, title: "最大正方形", difficulty: "中等", slug: "221-maximal-square" },
+  { id: 226, title: "翻转二叉树", difficulty: "简单", slug: "226-invert-binary-tree" },
   { id: 234, title: "回文链表", difficulty: "简单", slug: "234-palindrome-linked-list" },
-  { id: 236, title: "二叉树的最近公共祖先", difficulty: "中等", slug: "236-lowest-common-ancestor-of-a-binary-tree" }
+  { id: 236, title: "二叉树的最近公共祖先", difficulty: "中等", slug: "236-lowest-common-ancestor-of-a-binary-tree" },
+  { id: 739, title: "每日温度", difficulty: "中等", slug: "739-daily-temperatures" }
 ];
 
 const difficultyColors = {
