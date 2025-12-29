@@ -1,4 +1,5 @@
 import { Children, useEffect, useRef, useState } from 'react';
+import MaxSquareViz from './MaxSquareViz';
 
 const collectText = (node) => {
   if (typeof node === 'string') {
@@ -154,6 +155,7 @@ const MDXComponents = {
   td: Td,
   Mermaid,
   DifficultyBadge,
+  MaxSquareViz,
 };
 
 export default MDXComponents;

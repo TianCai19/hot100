@@ -24,6 +24,7 @@ Available custom components in `components/MDXComponents.js`:
 
 - `<DifficultyBadge>` - Renders difficulty badge (简单/中等/困难) with color coding
 - `<Mermaid>` - Container for Mermaid diagrams (currently renders as code block)
+- `<MaxSquareViz>` - Grid/SVG visualizer for矩阵类题，位于 `components/MaxSquareViz.js`
 - Code blocks automatically get syntax highlighting via `rehype-highlight`
 
 ### Data Flow
@@ -100,6 +101,19 @@ Or manually:
    - Include frontmatter: `title`, `difficulty`, `description`
    - Use `<DifficultyBadge>` for difficulty display
    - Use `<Mermaid>` for diagrams
+   - For矩阵/网格示意图，直接用已注册的 `<MaxSquareViz>` 生成 SVG，无需手绘或外部图片。例如：
+     ```mdx
+     <MaxSquareViz
+       matrix={[
+         ['1','0','1','0'],
+         ['1','1','1','1'],
+         ['0','1','1','1'],
+       ]}
+       candidate={{ row: 0, col: 1, size: 2 }}  // 可选红框
+       square={{ row: 1, col: 1, size: 2 }}     // 绿色框（必填）
+     />
+     ```
+     `row/col` 从 0 起，`size` 为边长；删除 `candidate` 可隐藏红框。
    - Include both Python and C++ code blocks with syntax highlighting
    - **IMPORTANT:** Provide **multiple solutions** when applicable:
      - At least 2 different approaches (e.g., brute force + optimal)

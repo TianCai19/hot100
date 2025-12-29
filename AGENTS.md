@@ -34,3 +34,16 @@
 - When adding a problem manually, update `pages/index.js` problem list to surface it. Ensure `slug` matches the MDX filename.
 - Use consistent section order inside MDX: description → solutions (with language-specific code) → comparison/complexity table.
 - Keep wording concise and align code samples between Python and C++ where both are provided.
+- For可视化示意（矩阵/网格高亮），MDX已注册组件 `<MaxSquareViz>`（见 `components/MaxSquareViz.js`），直接在文章内使用即可，例如：
+  ```mdx
+  <MaxSquareViz
+    matrix={[
+      ['1','0','1'],
+      ['1','1','1'],
+      ['0','1','1'],
+    ]}
+    candidate={{ row: 0, col: 0, size: 2 }}  // 可选：红框对比
+    square={{ row: 1, col: 1, size: 2 }}     // 必填：绿色框标最大子方块
+  />
+  ```
+  - `row/col` 从 0 开始；`size` 为边长；删除 `candidate` 可去掉红框。无需手动绘图或导入 PNG/SVG 资源。
