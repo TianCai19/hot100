@@ -84,14 +84,88 @@ const Mermaid = ({ children }) => {
 
 const CodeBlock = ({ className, children }) => {
   const language = className?.replace('language-', '') || 'text';
+  const [copied, setCopied] = useState(false);
+  const codeRef = useRef(null);
+
+  const handleCopy = async () => {
+    const codeElement = codeRef.current;
+    let codeText = '';
+
+    if (codeElement) {
+      codeText = codeElement.textContent || codeElement.innerText || '';
+    } else if (typeof children === 'string') {
+      codeText = children;
+    }
+
+    try {
+      if (!codeText) {
+        throw new Error('empty code text');
+      }
+      // Try modern clipboard API first
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(codeText);
+      } else {
+        // Fallback to legacy method
+        const textArea = document.createElement('textarea');
+        textArea.value = codeText;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        const successful = document.execCommand('copy');
+        document.body.removeChild(textArea);
+        if (!successful) {
+          throw new Error('execCommand failed');
+        }
+      }
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+      console.log('Code copied successfully:', codeText.substring(0, 50) + '...');
+    } catch (error) {
+      console.error('Failed to copy code:', error);
+      // Fallback: select the code text so user can manually copy
+      if (codeElement) {
+        const range = document.createRange();
+        range.selectNodeContents(codeElement);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+    }
+  };
 
   return (
     <div className="relative group">
-      <div className="absolute top-2 right-2 text-xs text-gray-400 opacity-0 group-hover:opacity-100 transition">
-        {language}
+      <div className="absolute top-2 right-2 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <span className="text-xs text-gray-400">
+          {language}
+        </span>
+        <button
+          onClick={handleCopy}
+          className="flex items-center gap-1 px-2 py-1 bg-gray-700 hover:bg-gray-600 rounded text-xs text-gray-300 transition-colors"
+          title="复制代码"
+        >
+          {copied ? (
+            <>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              已复制
+            </>
+          ) : (
+            <>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              复制
+            </>
+          )}
+        </button>
       </div>
       <pre className={`language-${language} bg-gray-800 p-4 rounded-lg overflow-x-auto`}>
-        <code className={className}>{children}</code>
+        <code ref={codeRef} className={className}>{children}</code>
       </pre>
     </div>
   );
