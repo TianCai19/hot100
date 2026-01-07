@@ -81,7 +81,7 @@ export default function Home() {
       {/* 快速导航 */}
       <div className="mb-8 p-6 bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg">
         <h2 className="text-xl font-semibold text-white mb-4">🚀 快速导航</h2>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-3">
           <Link
             href="/problems/python-cheatsheet"
             className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-blue-500/30"
@@ -92,11 +92,40 @@ export default function Home() {
                   📘 Python 语法速查
                 </h3>
                 <p className="text-sm text-gray-400 mt-1">
-                  LeetCode 常用语法、数据结构、算法模式
+                  常用语法、数据结构
                 </p>
               </div>
               <svg
                 className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </Link>
+
+          <Link
+            href="/problems/algorithm-templates"
+            className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-orange-500/30"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-orange-400 group-hover:text-orange-300">
+                  🧩 算法模板速查
+                </h3>
+                <p className="text-sm text-gray-400 mt-1">
+                  拓扑排序、并查集、DP
+                </p>
+              </div>
+              <svg
+                className="w-6 h-6 text-orange-400 group-hover:translate-x-1 transition"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -121,7 +150,7 @@ export default function Home() {
                   📊 SQL 语法速查
                 </h3>
                 <p className="text-sm text-gray-400 mt-1">
-                  常用查询语法、窗口函数、LeetCode SQL 题解
+                  窗口函数、JOIN、CTE
                 </p>
               </div>
               <svg
