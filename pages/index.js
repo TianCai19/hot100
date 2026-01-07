@@ -78,6 +78,74 @@ export default function Home() {
         <p className="text-gray-400">算法题解集合 - 精选题目，详解解法</p>
       </div>
 
+      {/* 快速导航 */}
+      <div className="mb-8 p-6 bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg">
+        <h2 className="text-xl font-semibold text-white mb-4">🚀 快速导航</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <Link
+            href="/problems/python-cheatsheet"
+            className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-blue-500/30"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-blue-400 group-hover:text-blue-300">
+                  📘 Python 语法速查
+                </h3>
+                <p className="text-sm text-gray-400 mt-1">
+                  LeetCode 常用语法、数据结构、算法模式
+                </p>
+              </div>
+              <svg
+                className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </Link>
+
+          <Link
+            href="/problems/sql-cheatsheet"
+            className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-green-500/30"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-green-400 group-hover:text-green-300">
+                  📊 SQL 语法速查
+                </h3>
+                <p className="text-sm text-gray-400 mt-1">
+                  常用查询语法、窗口函数、LeetCode SQL 题解
+                </p>
+              </div>
+              <svg
+                className="w-6 h-6 text-green-400 group-hover:translate-x-1 transition"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </Link>
+        </div>
+      </div>
+
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold text-gray-200 mb-4">📝 题目列表</h2>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {problems.map((problem) => (
           <Link
