@@ -85,21 +85,22 @@ const Mermaid = ({ children }) => {
 const CodeBlock = ({ className, children }) => {
   const language = className?.replace('language-', '') || 'text';
   const [copied, setCopied] = useState(false);
+  const codeRef = useRef(null);
 
   const handleCopy = async () => {
-    // Try to extract code text from the actual DOM element
-    const codeElement = document.querySelector(`code.${className}`);
+    const codeElement = codeRef.current;
     let codeText = '';
 
     if (codeElement) {
-      // Get the text content from the DOM
       codeText = codeElement.textContent || codeElement.innerText || '';
     } else if (typeof children === 'string') {
-      // Fallback to children prop
       codeText = children;
     }
 
     try {
+      if (!codeText) {
+        throw new Error('empty code text');
+      }
       // Try modern clipboard API first
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(codeText);
@@ -164,7 +165,7 @@ const CodeBlock = ({ className, children }) => {
         </button>
       </div>
       <pre className={`language-${language} bg-gray-800 p-4 rounded-lg overflow-x-auto`}>
-        <code className={className}>{children}</code>
+        <code ref={codeRef} className={className}>{children}</code>
       </pre>
     </div>
   );
