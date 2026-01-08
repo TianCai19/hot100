@@ -10,16 +10,22 @@ import matter from 'gray-matter';
 export default function ProblemPage({ source, title, difficulty }) {
   const router = useRouter();
   const [headings, setHeadings] = useState([]);
+  const [tocCollapsed, setTocCollapsed] = useState(false);
 
   // 提取标题用于目录
   useEffect(() => {
     const extractHeadings = () => {
+      const idCounts = new Map();
       const headingElements = document.querySelectorAll('h2, h3, h4, h5, h6');
       const headingList = Array.from(headingElements).map((element) => {
-        const id = element.textContent
+        const baseId = element.textContent
           .toLowerCase()
           .replace(/[^\w\s-]/g, '')
           .replace(/\s+/g, '-');
+
+        const count = idCounts.get(baseId) || 0;
+        const id = count === 0 ? baseId : `${baseId}-${count}`;
+        idCounts.set(baseId, count + 1);
 
         // 为标题添加ID
         if (!element.id) {
@@ -41,16 +47,47 @@ export default function ProblemPage({ source, title, difficulty }) {
     return () => clearTimeout(timer);
   }, [source]);
 
-  // 特殊处理文档类内容，添加目录
-  const showTOC = headings.length > 3 && (difficulty === '文档' || title.includes('语法'));
+  // 全部页面有标题时显示目录
+  const showTOC = headings.length > 0;
 
   return (
     <Layout>
+      <button
+        onClick={() => router.push('/')}
+        className="fixed right-6 bottom-6 z-50 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2"
+        aria-label="返回题目列表"
+      >
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+        返回
+      </button>
+
       {/* 侧边目录 */}
-      {showTOC && <TableOfContents headings={headings} />}
+      {showTOC && (
+        <TableOfContents
+          headings={headings}
+          collapsed={tocCollapsed}
+          onToggle={() => setTocCollapsed((prev) => !prev)}
+        />
+      )}
 
       {/* 主内容区域 */}
-      <div className={`transition-all duration-300 ${showTOC ? 'ml-72' : ''}`}>
+      <div
+        className={`transition-all duration-300 ${
+          showTOC && !tocCollapsed ? 'ml-72' : ''
+        }`}
+      >
         <article className="max-w-4xl px-8">
           <div className="mb-6">
             <button

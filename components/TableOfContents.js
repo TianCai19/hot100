@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default function TableOfContents({ headings = [] }) {
+export default function TableOfContents({
+  headings = [],
+  collapsed = false,
+  onToggle = () => {},
+}) {
   const [activeId, setActiveId] = useState('');
 
   useEffect(() => {
@@ -46,11 +50,32 @@ export default function TableOfContents({ headings = [] }) {
     return null;
   }
 
+  if (collapsed) {
+    return (
+      <div className="fixed left-0 top-24 z-40">
+        <button
+          onClick={onToggle}
+          className="bg-gray-900/95 backdrop-blur-sm border border-gray-700 text-gray-200 px-3 py-2 rounded-r-lg shadow-lg hover:text-white hover:bg-gray-800 transition-all text-sm"
+          aria-expanded={!collapsed}
+        >
+          📋 目录
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed left-0 top-24 h-full w-64 bg-gray-900/95 backdrop-blur-sm border-r border-gray-700 overflow-y-auto p-6 z-40">
-      <h3 className="text-lg font-semibold text-gray-200 mb-4 sticky top-0 bg-gray-900/95 pb-2">
-        📋 目录
-      </h3>
+      <div className="flex items-center justify-between mb-4 sticky top-0 bg-gray-900/95 pb-2">
+        <h3 className="text-lg font-semibold text-gray-200">📋 目录</h3>
+        <button
+          onClick={onToggle}
+          className="text-xs text-gray-400 hover:text-gray-200 px-2 py-1 rounded hover:bg-gray-800 transition-all"
+          aria-expanded={!collapsed}
+        >
+          收起
+        </button>
+      </div>
       <nav>
         <ul className="space-y-2">
           {headings.map((heading) => (
