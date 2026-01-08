@@ -329,6 +329,207 @@ from collections import Counter
 count = Counter(s)
 ```
 
+## 🔤 字符串操作详解
+
+### 大小写转换
+```python
+s = "Hello World"
+
+s.upper()          # "HELLO WORLD" - 全部转大写
+s.lower()          # "hello world" - 全部转小写
+s.capitalize()    # "Hello world" - 首字母大写
+s.title()         # "Hello World" - 每个单词首字母大写
+s.swapcase()      # "hELLO wORLD" - 大小写互换
+
+# 判断大小写
+s.isupper()        # 是否全是大写
+s.islower()        # 是否全是小写
+s.istitle()        # 是否首字母大写格式
+```
+
+### 字符串查找和替换
+```python
+s = "Hello World, Hello Python"
+
+# 查找
+s.find("Hello")           # 0 - 首次出现位置，不存在返回-1
+s.rfind("Hello")          # 13 - 最后一次出现位置
+s.index("Hello")           # 0 - 同find()，但不存在会抛异常
+s.rindex("Hello")          # 13 - 最后一次出现位置
+s.count("Hello")           # 2 - 统计出现次数
+
+# 替换
+s.replace("Hello", "Hi")        # "Hi World, Hi Python" - 全局替换
+s.replace("Hello", "Hi", 1)    # "Hi World, Hello Python" - 替换指定次数
+
+# 检查开头结尾
+s.startswith("Hello")      # True - 是否以指定字符串开头
+s.endswith("Python")        # True - 是否以指定字符串结尾
+```
+
+### 字符串分割和连接
+```python
+s = "apple,banana,orange"
+
+# 分割
+s.split(",")               # ['apple', 'banana', 'orange'] - 按分隔符分割
+s.rsplit(",", 1)           # ['apple,banana', 'orange'] - 从右侧开始分割
+s.partition(",")           # ('apple', ',', 'banana,orange') - 分成三部分
+s.rpartition(",")          # ('apple,banana', ',', 'orange') - 从右侧分区
+
+# 连接
+words = ["apple", "banana", "orange"]
+",".join(words)             # "apple,banana,orange"
+" ".join(words)             # "apple banana orange"
+"\n".join(words)            # 换行符连接
+
+# 去除空白
+s = "  Hello World  "
+s.strip()                  # "Hello World" - 去除两端空白
+s.lstrip()                 # "Hello World  " - 去除左侧空白
+s.rstrip()                 # "  Hello World" - 去除右侧空白
+```
+
+### 字符串格式化
+```python
+# f-string (Python 3.6+ 推荐)
+name = "Alice"
+age = 25
+message = f"Hello {name}, you are {age} years old"
+
+# format 方法
+message = "Hello {}, you are {} years old".format(name, age)
+message = "Hello {name}, you are {age} years old".format(name=name, age=age)
+
+# % 格式化 (传统方式)
+message = "Hello %s, you are %d years old" % (name, age)
+
+# 对齐和填充
+s = "Hello"
+s.center(10)               # "   Hello   " - 居中对齐
+s.ljust(10)                # "Hello     " - 左对齐
+s.rjust(10)                # "     Hello" - 右对齐
+s.zfill(10)                # "000000Hello" - 左侧补零
+
+# 数字格式化
+pi = 3.14159
+f"{pi:.2f}"                # "3.14" - 保留两位小数
+f"{pi:.3f}"               # "3.142" - 保留三位小数
+f"{pi:e}"                 # "3.141590e+00" - 科学计数法
+```
+
+### 字符串验证和检查
+```python
+s = "Hello123"
+
+# 字符类型检查
+s.isdigit()                # False - 是否全为数字
+s.isalpha()                # False - 是否全为字母
+s.isalnum()                # True - 是否全为数字或字母
+s.isspace()                # False - 是否全为空白字符
+s.islower()                # False - 是否全为小写
+s.isupper()                # False - 是否全为大写
+s.istitle()                # False - 是否首字母大写格式
+
+# 其他检查
+s.isascii()                # True - 是否为ASCII字符
+s.isdecimal()              # True - 是否为十进制字符
+s.isnumeric()              # True - 是否为数字字符
+s.isprintable()           # True - 是否可打印字符
+```
+
+### 字符串编码和解码
+```python
+# Unicode 编码
+s = "Hello 世界"
+s.encode('utf-8')          # b'Hello \xe4\xb8\x96\xe7\x95\x8c'
+s.encode('gbk')            # GBK编码
+
+# 解码
+b = b'Hello \xe4\xb8\x96\xe7\x95\x8c'
+b.decode('utf-8')          # "Hello 世界"
+
+# 字符和ASCII码转换
+ord('A')                   # 65 - 字符转ASCII
+chr(65)                    # 'A' - ASCII码转字符
+```
+
+### 字符串实用方法
+```python
+s = "Hello World"
+
+# 重复和反转
+s * 3                      # "Hello WorldHello WorldHello World"
+s[::-1]                    # "dlroW olleH" - 反转字符串
+
+# 切片
+s[0:5]                     # "Hello" - 切片 [start:end)
+s[:5]                      # "Hello" - 从开始到位置5
+s[6:]                      # "World" - 从位置6到结束
+s[-1]                      # "d" - 最后一个字符
+s[-3:]                     # "rld" - 最后三个字符
+
+# 成员检查
+"Hello" in s               # True - 检查子字符串
+"hi" not in s              # True - 检查不在子字符串中
+
+# 字符串比较
+s1 == s2                   # 字符串相等比较
+s1 < s2                    # 字典序比较
+
+# 转换为列表/元组
+list(s)                    # ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
+tuple(s)                   # ('H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd')
+```
+
+### 字符串模板
+```python
+from string import Template
+
+# 使用 Template 进行简单字符串替换
+t = Template("Hello $name, you have $count messages")
+result = t.substitute(name="Alice", count=5)
+# "Hello Alice, you have 5 messages"
+
+# 安全替换（缺少变量不报错）
+result = t.safe_substitute(name="Bob")
+# "Hello Bob, you have $count messages"
+```
+
+### 常用字符串操作组合技巧
+```python
+# 去除所有空白字符
+import re
+re.sub(r'\s+', '', s)
+
+# 首字母大写
+s.capitalize()
+
+# 驼峰命名转下划线
+import re
+re.sub('(.)([A-Z][a-z]+)', r'\1_\2', 'CamelCase').lower()
+
+# 下划线转驼峰
+s = "snake_case_string"
+parts = s.split('_')
+result = parts[0] + ''.join(word.capitalize() for word in parts[1:])
+
+# 统计每个字符出现次数
+from collections import Counter
+char_count = Counter(s)
+
+# 查找最常见的字符
+char_count.most_common(1)[0]
+
+# 字符串去重（保持顺序）
+from collections import OrderedDict
+result = ''.join(OrderedDict.fromkeys(s).keys())
+
+# 多字符替换
+trans_table = str.maketrans('abc', '123')
+s.translate(trans_table)  # a->1, b->2, c->3
+```
+
 ## 🔄 常用内置函数
 ```python
 # 排序
