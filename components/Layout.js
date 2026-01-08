@@ -20,6 +20,14 @@ export default function Layout({ children }) {
                 题目列表
               </Link>
               <a
+                href="https://llmnote.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-gray-300"
+              >
+                LLM Note
+              </a>
+              <a
                 href="https://leetcode.cn/problemset/"
                 target="_blank"
                 rel="noopener noreferrer"
