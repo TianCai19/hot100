@@ -64,72 +64,6 @@ const problems = [
   { id: 739, title: "每日温度", difficulty: "中等", slug: "739-daily-temperatures" }
 ];
 
-const externalNotes = [
-  {
-    id: "00",
-    title: "YOLO 原理解析",
-    summary: "密集预测、正样本匹配、loss 与 NMS：把一阶段检测的链条串起来",
-    tags: ["CV", "Detection", "Quickstart"],
-    date: "2026-01-04",
-    readTime: "8 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "01",
-    title: "马尔可夫决策过程 (MDP)",
-    summary: "强化学习的数学基础：智能体与环境的交互模型",
-    tags: ["RL", "基础", "数学"],
-    date: "2026-01-03",
-    readTime: "18 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "02",
-    title: "Vision Transformer (ViT)",
-    summary: "深入理解 ViT 如何让 AI 看懂图片",
-    tags: ["Vision", "Transformer", "VLM"],
-    date: "2026-01-03",
-    readTime: "15 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "03",
-    title: "Transformer 架构",
-    summary: "现代 AI 的基石：注意力机制与序列建模",
-    tags: ["NLP", "Attention", "基础"],
-    date: "2026-01-03",
-    readTime: "12 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "04",
-    title: "Qwen3-VL（Part 1）",
-    summary: "架构与关键创新：Interleaved MRoPE、DeepStack、时间戳 token",
-    tags: ["VLM", "Qwen3", "架构"],
-    date: "2026-01-03",
-    readTime: "35 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "05",
-    title: "Qwen3-VL（Part 2）",
-    summary: "四阶段预训练与数据配方全解析",
-    tags: ["Pretrain", "Data", "多模态"],
-    date: "2026-01-03",
-    readTime: "40 min",
-    type: "阅读笔记"
-  },
-  {
-    id: "06",
-    title: "Qwen3-VL（Part 3）",
-    summary: "能力、评测与落地：从 prompt 到部署",
-    tags: ["Inference", "Deploy", "应用"],
-    date: "2026-01-03",
-    readTime: "30 min",
-    type: "阅读笔记"
-  }
-];
-
 const difficultyColors = {
   "简单": "bg-green-600",
   "中等": "bg-yellow-600",
@@ -237,9 +171,14 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mb-10">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <h2 className="text-xl font-semibold text-gray-200">📚 LLM Note</h2>
+      <div className="mb-10 p-5 bg-gray-800 rounded-lg border border-blue-500/20">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-200">📚 LLM Note</h2>
+            <p className="text-sm text-gray-400 mt-1">
+              访问外部笔记站点，浏览最新阅读记录与技术整理。
+            </p>
+          </div>
           <a
             href="https://llmnote.vercel.app/"
             target="_blank"
@@ -248,37 +187,6 @@ export default function Home() {
           >
             访问外站
           </a>
-        </div>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {externalNotes.map((note) => (
-            <a
-              key={note.id}
-              href="https://llmnote.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block p-5 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-blue-500/20"
-            >
-              <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
-                <span className="font-mono text-gray-500">{note.id}</span>
-                <span>{note.type}</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-200 group-hover:text-blue-300 transition">
-                {note.title}
-              </h3>
-              <p className="text-sm text-gray-400 mt-2">{note.summary}</p>
-              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-gray-500">
-                {note.tags.map((tag) => (
-                  <span key={tag} className="px-2 py-1 rounded bg-gray-900/60">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
-                <span>{note.date}</span>
-                <span>{note.readTime}</span>
-              </div>
-            </a>
-          ))}
         </div>
       </div>
 
