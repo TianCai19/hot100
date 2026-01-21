@@ -51,6 +51,9 @@ const problems = [
   { id: 136, title: "只出现一次的数字", difficulty: "简单", slug: "136-single-number" },
   { id: 139, title: "单词拆分", difficulty: "中等", slug: "139-word-break" },
   { id: 141, title: "环形链表", difficulty: "简单", slug: "141-linked-list-cycle" },
+  { id: 142, title: "环形链表 II", difficulty: "中等", slug: "142-linked-list-cycle-ii" },
+  { id: 146, title: "LRU 缓存", difficulty: "中等", slug: "146-lru-cache" },
+  { id: 148, title: "排序链表", difficulty: "中等", slug: "148-sort-list" },
   { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
   { id: 200, title: "岛屿数量", difficulty: "中等", slug: "200-number-of-islands" },
   { id: 206, title: "反转链表", difficulty: "简单", slug: "206-reverse-linked-list" },
@@ -244,6 +247,17 @@ export default function Home() {
           <li>• Python 和 C++ 双语言实现</li>
           <li>• 详细的复杂度分析</li>
           <li>• 完整的测试用例</li>
+          <li>
+            • Git 仓库地址：
+            <a
+              href="https://github.com/TianCai19/hot100"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 ml-1"
+            >
+              https://github.com/TianCai19/hot100
+            </a>
+          </li>
         </ul>
       </div>
     </Layout>
