@@ -2,7 +2,7 @@
 
 基于 **Next.js 16 + MDX** 的算法题解网站，支持代码高亮和 Mermaid 图表。
 
-在线预览：https://hot100-c6yw7v9ok-tiancai19s-projects.vercel.app
+在线预览：https://hot100.vercel.app
 
 ## 快速开始
 
