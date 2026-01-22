@@ -81,9 +81,9 @@ export default function Home() {
         <p className="text-gray-400">算法题解集合 - 精选题目，详解解法</p>
       </div>
 
-      {/* 快速导航 */}
+      {/* 参考资料 */}
       <div className="mb-8 p-6 bg-gradient-to-br from-blue-900 to-purple-900 rounded-lg">
-        <h2 className="text-xl font-semibold text-white mb-4">🚀 快速导航</h2>
+        <h2 className="text-xl font-semibold text-white mb-4">📚 参考资料</h2>
         <div className="grid gap-4 md:grid-cols-3">
           <Link
             href="/problems/python-cheatsheet"
@@ -100,6 +100,35 @@ export default function Home() {
               </div>
               <svg
                 className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </Link>
+
+          <Link
+            href="/problems/pytorch-cheatsheet"
+            className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition group border border-rose-500/30"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-rose-400 group-hover:text-rose-300">
+                  🔥 PyTorch 速查
+                </h3>
+                <p className="text-sm text-gray-400 mt-1">
+                  张量、训练、保存
+                </p>
+              </div>
+              <svg
+                className="w-6 h-6 text-rose-400 group-hover:translate-x-1 transition"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
