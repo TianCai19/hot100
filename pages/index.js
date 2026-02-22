@@ -55,6 +55,7 @@ const problems = [
   { id: 146, title: "LRU 缓存", difficulty: "中等", slug: "146-lru-cache" },
   { id: 148, title: "排序链表", difficulty: "中等", slug: "148-sort-list" },
   { id: 160, title: "相交链表", difficulty: "简单", slug: "160-intersection-of-two-linked-lists" },
+  { id: 169, title: "多数元素", difficulty: "简单", slug: "169-majority-element" },
   { id: 200, title: "岛屿数量", difficulty: "中等", slug: "200-number-of-islands" },
   { id: 206, title: "反转链表", difficulty: "简单", slug: "206-reverse-linked-list" },
   { id: 207, title: "课程表", difficulty: "中等", slug: "207-course-schedule" },
